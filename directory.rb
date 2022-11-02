@@ -29,7 +29,7 @@ end
 def print(students)
     i = 0
     while i < students.length do 
-        puts "#{students[i][:name]} (#{students[i][:cohort]} cohort. Hobby: #{students[i][:hobby]})"
+        puts "#{students[i][:name]} (#{students[i][:cohort]} cohort) Hobby: #{students[i][:hobby]}".center(150)
         i = i + 1
     end
 end
