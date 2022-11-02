@@ -1,20 +1,24 @@
 #first we put all the students into an array
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the name and cohort of the student as 'name, cohort'"
   puts "To finish, just hit return three times"
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name_cohort = gets.chomp
+  name = name_cohort.split(",")[0]
+  cohort = name_cohort.split(",")[1]
   # while the name is not empty, repeat this code
   puts "Please enter a hobby"
   hobby = gets.chomp
-  while !name.empty? do
+  while !name_cohort.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, hobby: hobby}
+    students << {name: name, cohort: cohort.to_sym, hobby: hobby}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+    name_cohort = gets.chomp
+    name = name_cohort.split(",")[0]
+    cohort = name_cohort.split(",")[1]
     hobby = gets.chomp
   end
   # return the array of students
