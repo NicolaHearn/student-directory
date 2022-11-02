@@ -5,7 +5,7 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name_cohort = gets.chomp
+  name_cohort = gets.strip
   name = name_cohort.split(", ")[0]
   cohort = name_cohort.split(",")[1]
   # while the name is not empty, repeat this code
@@ -14,7 +14,11 @@ def input_students
   while !name_cohort.empty? do
     # add the student hash to the array
     students << {name: name, cohort: cohort.to_sym, hobby: hobby}
-    puts "Now we have #{students.count} students"
+    if students.length == 1
+      puts "Now we have #{students.count} student"
+    else 
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     name_cohort = gets.chomp
     name = name_cohort.split(",")[0]
@@ -35,7 +39,6 @@ def print(students)
         student[:cohort]
     end
     cohort_groups = all_cohorts.sort.uniq
-    puts cohort_groups
     j = 0
     while j < cohort_groups.length do
         students.each do |student| 
@@ -48,7 +51,11 @@ def print(students)
 end
 
 def print_footer(names)
-    puts "Overall, we have #{names.count} great students"
+    if names.count == 1
+      puts "Overall, we have #{names.count} great student"
+    else
+      puts "Overall, we have #{names.count} great students"
+    end
 end
 
 #then we call the methods
