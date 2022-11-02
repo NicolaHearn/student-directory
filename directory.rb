@@ -6,7 +6,7 @@ def input_students
   students = []
   # get the first name
   name_cohort = gets.chomp
-  name = name_cohort.split(",")[0]
+  name = name_cohort.split(", ")[0]
   cohort = name_cohort.split(",")[1]
   # while the name is not empty, repeat this code
   puts "Please enter a hobby"
@@ -31,10 +31,19 @@ def print_header
 end
 
 def print(students)
-    i = 0
-    while i < students.length do 
-        puts "#{students[i][:name]} (#{students[i][:cohort]} cohort) Hobby: #{students[i][:hobby]}".center(150)
-        i = i + 1
+    all_cohorts = students.map do |student|
+        student[:cohort]
+    end
+    cohort_groups = all_cohorts.sort.uniq
+    puts cohort_groups
+    j = 0
+    while j < cohort_groups.length do
+        students.each do |student| 
+            if student[:cohort] == cohort_groups[j]
+                puts "#{student[:name]} (#{student[:cohort]} cohort) Hobby: #{student[:hobby]}".center(100)
+            end
+        end
+        j = j+1
     end
 end
 
