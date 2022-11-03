@@ -55,10 +55,16 @@ def process(selection)
     show_students
   when "3"
     # save the list to a file
-    save_students
+    puts "Which file would you like to save to?"
+    save_file_name = STDIN.gets.chomp
+    save_students(save_file_name)
+    puts "students saved to students.csv"
   when "4"
     # load the list from students.csv
-    load_students
+    puts "Which file would you like to load from?"
+    load_file_name = STDIN.gets.chomp
+    load_students(load_file_name)
+    puts "students loaded from students.csv"
   when "9"
     exit # this will cause the program to terminate
   else
@@ -105,9 +111,9 @@ def print_footer
     end
 end
 
-def save_students
+def save_students(filename)
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
