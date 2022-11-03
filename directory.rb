@@ -1,5 +1,6 @@
 @students = []
 
+# displays the interactive menu
 def interactive_menu
   loop do
     print_menu
