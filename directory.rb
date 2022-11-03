@@ -2,23 +2,8 @@
 
 def interactive_menu
   loop do
-    # 1. print the menu and ask the user what to do
     print_menu
-    # 2. read the input and save it into a variable
-    selection = gets.chomp
-    # 3. do what the user has asked
-    case selection
-    when "1"
-      # input the students
-      students = input_students
-    when "2"
-      # show the students
-      show_students
-    when "9"
-      exit # this will cause the program to terminate
-    else
-      puts "I don't know what you meant, try again" 
-    end
+    process(gets.chomp)
   end
 end
 
@@ -57,12 +42,27 @@ def input_students
   end
 end
 
+def process(selection)
+  case selection
+  when "1"
+    # input the students
+    students = input_students
+  when "2"
+    # show the students
+    show_students
+  when "9"
+    exit # this will cause the program to terminate
+  else
+    puts "I don't know what you meant, try again" 
+  end
+end
+
 def print_header
     puts "The Students of Villains Academy"
     puts "-------------"
 end
 
-def print(students)
+def print_students_list
     all_cohorts = @students.map do |student|
         student[:cohort]
     end
@@ -80,15 +80,15 @@ end
 
 def show_students
   print_header
-  print(@students)
-  print_footer(@students)
+  print_students_list
+  print_footer
 end
 
-def print_footer(names)
-    if names.count == 1
-      puts "Overall, we have #{names.count} great student"
+def print_footer
+    if @students.count == 1
+      puts "Overall, we have #{@students.count} great student"
     else
-      puts "Overall, we have #{names.count} great students"
+      puts "Overall, we have #{@students.count} great students"
     end
 end
 
